@@ -10,4 +10,3 @@ class Article {
     required this.publishedAt,
   });
 }
-
