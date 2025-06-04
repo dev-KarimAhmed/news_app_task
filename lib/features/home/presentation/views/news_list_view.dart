@@ -58,15 +58,15 @@ class NewsListView extends StatelessWidget {
                           maxLines: 2,
                           overflow: TextOverflow.ellipsis,
                         ),
-                        SizedBox(height: 8.h),
+                        SizedBox(height: 4.h),
                         Text(
                           'description of the article goes here' * 8,
                           overflow: TextOverflow.ellipsis,
-                          maxLines: 2,
+                          maxLines: 3,
                           style: Theme.of(context).textTheme.bodySmall
                               ?.copyWith(color: Colors.grey[600]),
                         ),
-                        SizedBox(height: 8.h),
+                        SizedBox(height: 6.h),
                         Text(
                           'Published on: ${DateFormat('yyyy-MM-dd').format(DateTime.parse(article.publishedAt))}',
                           style: Theme.of(context).textTheme.bodySmall,
@@ -94,4 +94,3 @@ final List<Article> mockArticles = List.generate(
         DateTime.now().subtract(Duration(days: index)).toIso8601String(),
   ),
 );
-
