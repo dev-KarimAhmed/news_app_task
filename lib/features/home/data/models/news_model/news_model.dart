@@ -1,14 +1,20 @@
+
 import 'package:equatable/equatable.dart';
+import 'package:news_app/features/home/domain/entities/news_entity.dart';
 
 import 'source.dart';
 
-class NewsModel extends Equatable {
+class NewsModel extends NewsEntity {
   final Source? source;
   final String? author;
+  @override
   final String? title;
+  @override
   final String? description;
   final String? url;
+  @override
   final String? urlToImage;
+  @override
   final String? publishedAt;
   final String? content;
 
@@ -21,7 +27,12 @@ class NewsModel extends Equatable {
     this.urlToImage,
     this.publishedAt,
     this.content,
-  });
+  }) : super(
+          title: title,
+          description: description,
+          urlToImage: urlToImage ,
+          publishedAt: publishedAt,
+        );
 
   factory NewsModel.fromJson(Map<String, dynamic> json) => NewsModel(
     source:
