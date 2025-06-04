@@ -1,5 +1,6 @@
 
-import 'package:equatable/equatable.dart';
+// ignore_for_file: overridden_fields
+
 import 'package:news_app/features/home/domain/entities/news_entity.dart';
 
 import 'source.dart';
@@ -10,6 +11,7 @@ class NewsModel extends NewsEntity {
   @override
   final String? title;
   @override
+
   final String? description;
   final String? url;
   @override
