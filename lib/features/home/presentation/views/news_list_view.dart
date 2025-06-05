@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:news_app/core/utils/di_injection.dart';
+import 'package:news_app/core/utils/dependency_injection.dart';
 import 'package:news_app/features/home/presentation/manger/cubit/fetch_news_cubit.dart';
 import 'package:news_app/features/home/presentation/views/widgets/news_list.dart';
 
