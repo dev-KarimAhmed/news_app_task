@@ -19,7 +19,7 @@ class NewsRepoImpl implements FetchNewsRepo {
   }) async {
     try {
       List<NewsEntity> newsList = [];
-       newsList = localDataSource.fetchNewsLocally(pageSize: page);
+       newsList = localDataSource.fetchNewsLocally(page: page);
         
         if (newsList.isNotEmpty) {
           log("Fetched news from local data source");

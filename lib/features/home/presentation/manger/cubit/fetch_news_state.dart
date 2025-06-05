@@ -21,6 +21,9 @@ final class FetchNewsFailurePagination extends FetchNewsState {
 final class FetchNewsSuccess extends FetchNewsState {
 
 }
+final class FetchNewsSuccessPagination extends FetchNewsState {
+
+}
 final class FetchNewsFailure extends FetchNewsState {
   final String errorMessage;
 

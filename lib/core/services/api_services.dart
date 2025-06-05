@@ -15,7 +15,7 @@ class ApiServices {
       _baseUrl,
       queryParameters: {
         'q':  "everything",
-        'apiKey': SensitiveData.anotherApiKey3,
+        'apiKey': SensitiveData.anotherApiKey4,
         'page': page ?? 1,
         'pageSize': 20,
       },
