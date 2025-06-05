@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:news_app/core/errors/failure.dart';
@@ -18,6 +20,8 @@ class NewsRepoImpl implements FetchNewsRepo {
         category: category,
         pageSize: pageSize,
       );
+
+      
       return Right(newsList);
     } catch (e) {
       if (e is DioException) {

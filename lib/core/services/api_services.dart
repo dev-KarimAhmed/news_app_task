@@ -8,15 +8,15 @@ class ApiServices {
   ApiServices(this._dio);
 
   Future<Map<String, dynamic>> get({
-    String? endpoint = 'technology',
-    int? pageSize = 10,
+    String? category,
+    int? pageSize,
   }) async {
     var response = await _dio.get(
       _baseUrl,
       queryParameters: {
-        'category': endpoint,
+        'category':  category ?? "technology",
         'apiKey': SensitiveData.apiKey,
-        'pageSize': pageSize,
+        'pagesize': pageSize ?? 10,
       },
     );
 

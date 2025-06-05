@@ -1,3 +1,4 @@
+
 import 'package:news_app/core/services/api_services.dart';
 import 'package:news_app/features/home/data/models/news_model/news_model.dart';
 import 'package:news_app/features/home/domain/entities/news_entity.dart';
@@ -13,8 +14,9 @@ class RemoteDataSourceImpl implements RemoteDataSource {
   @override
   Future<List<NewsEntity>> fetchNews({String? category, int? pageSize}) async {
     List<NewsEntity> newsList = [];
-    Map<String, dynamic> resopnse = await apiServices.get(
-      endpoint: category,
+
+    var resopnse = await apiServices.get(
+      category: category,
       pageSize: pageSize,
     );
 

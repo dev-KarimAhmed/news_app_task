@@ -12,5 +12,5 @@ void setupServiceLocator() {
   getIt.registerSingleton<NewsRepoImpl>(
     NewsRepoImpl(RemoteDataSourceImpl(getIt<ApiServices>())),
   );
-  getIt.registerFactory<FetchNewsCubit>(getIt());
+  getIt.registerFactory<FetchNewsCubit>(() => FetchNewsCubit(getIt()));
 }
