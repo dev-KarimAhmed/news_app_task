@@ -17,7 +17,7 @@ class NewsList extends StatefulWidget {
 
 class _NewsListState extends State<NewsList> {
   late ScrollController _scrollController;
-  int nextPage = 10;
+  int nextPage = 1;
   bool isLoading = false;
   @override
   void initState() {
