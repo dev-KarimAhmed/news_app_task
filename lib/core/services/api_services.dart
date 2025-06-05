@@ -17,7 +17,7 @@ class ApiServices {
         'q':  "everything",
         'apiKey': SensitiveData.anotherApiKey2,
         'page': page ?? 1,
-        'pageSize': 25,
+        'pageSize': 20,
       },
     );
 
