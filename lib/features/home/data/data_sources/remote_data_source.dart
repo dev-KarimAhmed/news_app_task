@@ -1,4 +1,5 @@
 
+import 'package:news_app/core/functions/save_news.dart';
 import 'package:news_app/core/services/api_services.dart';
 import 'package:news_app/features/home/data/models/news_model/news_model.dart';
 import 'package:news_app/features/home/domain/entities/news_entity.dart';
@@ -23,6 +24,8 @@ class RemoteDataSourceImpl implements RemoteDataSource {
     for (var news in resopnse['articles']) {
       newsList.add(NewsModel.fromJson(news));
     }
+
+    saveNews(newsList, "newsBox");
     return newsList;
   }
 }

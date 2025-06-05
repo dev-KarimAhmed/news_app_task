@@ -15,7 +15,7 @@ class ApiServices {
       _baseUrl,
       queryParameters: {
         'category':  category ?? "technology",
-        'apiKey': SensitiveData.anotherApiKey,
+        'apiKey': SensitiveData.anotherApiKey2,
         'pagesize': pageSize ?? 10,
       },
     );

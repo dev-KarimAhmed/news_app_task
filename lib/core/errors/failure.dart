@@ -1,14 +1,12 @@
 import 'package:dio/dio.dart';
 
 abstract class Failure {
-    final String errMessage;
+  final String errMessage;
 
   const Failure(this.errMessage);
 }
 
 class ServerError extends Failure {
-
-
   ServerError(super.errMessage);
 
   factory ServerError.fromDioError(DioException dioError) {
@@ -19,7 +17,8 @@ class ServerError extends Failure {
         return ServerError('Connection timeout with API server');
       case DioExceptionType.connectionError:
         return ServerError(
-            'Connection to API server failed due to internet connection');
+          'Connection to API server failed due to internet connection',
+        );
       case DioExceptionType.receiveTimeout:
         return ServerError('Receive timeout in connection with API server');
       case DioExceptionType.badResponse:
@@ -34,15 +33,16 @@ class ServerError extends Failure {
         if (dioError.response!.statusCode == 500) {
           return ServerError('Internal server error');
         } else {
-          return ServerError('Something went wrong , please try again later');
+          return ServerError(
+            'Something went wrong , please try again later \n  ${dioError.response!.statusMessage}',
+          );
         }
       case DioExceptionType.sendTimeout:
         return ServerError('Send timeout in connection with API server');
       default:
-      if(dioError.message!.contains('SocketException')) {
-        return ServerError('No internet connection');
-
-      }
+        if (dioError.message!.contains('SocketException')) {
+          return ServerError('No internet connection');
+        }
         return ServerError('Something went wrong , please try again later');
     }
   }
