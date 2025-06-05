@@ -26,8 +26,8 @@ class NewsListView extends StatelessWidget {
               backgroundColor: Colors.teal,
             ),
             body:
-                state is FetchNewsSuccess
-                    ? NewsList(news: state.newsList)
+                state is FetchNewsSuccess || state is FetchNewsLoadingPagination || state is FetchNewsFailurePagination
+                    ? NewsList(news: context.read<FetchNewsCubit>().newsList )
                     : state is FetchNewsLoading
                     ? const Center(
                       child: CircularProgressIndicator(color: Colors.teal),

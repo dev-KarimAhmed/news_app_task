@@ -9,16 +9,29 @@ class FetchNewsCubit extends Cubit<FetchNewsState> {
   FetchNewsCubit(this.newsRepoImpl) : super(FetchNewsInitial());
   NewsRepoImpl newsRepoImpl;
 
+
+ List<NewsEntity> newsList = [];
   
-  Future fetchNews() async {
-    emit(FetchNewsLoading());
-    var result = await newsRepoImpl.fetchNews();
+  Future fetchNews({int pageSize = 10}) async {
+  if (pageSize == 10) {
+      emit(FetchNewsLoading());
+    } else {
+      emit(FetchNewsLoadingPagination());
+    }
+    var result = await newsRepoImpl.fetchNews(
+      pageSize: pageSize,
+    );
     result.fold(
       (failure) {
+        if (pageSize == 10) {
         emit(FetchNewsFailure(failure.errMessage));
+      } else {
+        emit(FetchNewsFailurePagination(failure.errMessage));
+      }
       },
       (newsList) {
-        emit(FetchNewsSuccess(newsList));
+        this.newsList = newsList;
+        emit(FetchNewsSuccess());
       },
     );
   }

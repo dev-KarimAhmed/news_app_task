@@ -9,13 +9,17 @@ sealed class FetchNewsState extends Equatable {
 
 final class FetchNewsInitial extends FetchNewsState {}
 final class FetchNewsLoading extends FetchNewsState {}
-final class FetchNewsSuccess extends FetchNewsState {
-  final List<NewsEntity> newsList;
+final class FetchNewsLoadingPagination extends FetchNewsState {}
+final class FetchNewsFailurePagination extends FetchNewsState {
+  final String errorMessage;
 
-  const FetchNewsSuccess(this.newsList);
+  const FetchNewsFailurePagination(this.errorMessage);
 
   @override
-  List<Object> get props => [newsList];
+  List<Object> get props => [errorMessage];
+}
+final class FetchNewsSuccess extends FetchNewsState {
+
 }
 final class FetchNewsFailure extends FetchNewsState {
   final String errorMessage;
