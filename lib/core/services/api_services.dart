@@ -9,7 +9,7 @@ class ApiServices {
 
   Future<Map<String, dynamic>> get({
     String endpoint = 'everything',
-    String pageSize = '10',
+    int pageSize = 10,
   }) async {
     var response = await _dio.get(
       _baseUrl,
