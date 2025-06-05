@@ -34,6 +34,9 @@ class NewsModel extends NewsEntity {
           description: description,
           urlToImage: urlToImage ,
           publishedAt: publishedAt,
+          content: content,
+          url: url,
+          author: author,
         );
 
   factory NewsModel.fromJson(Map<String, dynamic> json) => NewsModel(
