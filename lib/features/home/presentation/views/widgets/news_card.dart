@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
 import 'package:news_app/core/widgets/custom_loading_indicator.dart';
+import 'package:news_app/core/widgets/custom_shimmer_indicator.dart';
 import 'package:news_app/features/home/domain/entities/news_entity.dart';
 import 'package:news_app/features/home/presentation/views/article_details.dart';
 
@@ -40,7 +41,7 @@ class NewsCard extends StatelessWidget {
                     imageUrl: news.urlToImage ?? '',
                     fit: BoxFit.cover,
                     height: 125.h,
-                    placeholder: (context, url) => CustomLoadingIndicator(),
+                    placeholder: (context, url) => CustomShimmerIndicator(),
                     errorWidget:
                         (context, url, error) => const SizedBox(
                           child: Icon(Icons.error, color: Colors.red),
@@ -85,3 +86,6 @@ class NewsCard extends StatelessWidget {
     );
   }
 }
+
+
+

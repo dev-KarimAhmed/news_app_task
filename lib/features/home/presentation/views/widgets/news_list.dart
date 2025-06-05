@@ -41,7 +41,7 @@ class _NewsListState extends State<NewsList> {
         if (!isLoading) {
           isLoading = true;
           log("$nextPage next page");
-          context.read<FetchNewsCubit>().fetchNews(pageSize: nextPage++);
+          context.read<FetchNewsCubit>().fetchNews(page: nextPage++);
           isLoading = false;
         }
       }
@@ -53,7 +53,7 @@ class _NewsListState extends State<NewsList> {
         // We have scrolled to 70% of the list
         if (!isLoading) {
           isLoading = true;
-          context.read<FetchNewsCubit>().fetchNews(pageSize: nextPage++);
+          context.read<FetchNewsCubit>().fetchNews(page: nextPage++);
           isLoading = false;
         }
       }

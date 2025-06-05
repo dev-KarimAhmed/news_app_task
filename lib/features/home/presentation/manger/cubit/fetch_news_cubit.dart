@@ -12,18 +12,18 @@ class FetchNewsCubit extends Cubit<FetchNewsState> {
 
  List<NewsEntity> newsList = [];
   
-  Future fetchNews({int pageSize = 10}) async {
-  if (pageSize == 10) {
+  Future fetchNews({int page = 1}) async {
+  if (page == 1) {
       emit(FetchNewsLoading());
     } else {
       emit(FetchNewsLoadingPagination());
     }
     var result = await newsRepoImpl.fetchNews(
-      pageSize: pageSize,
+      page: page,
     );
     result.fold(
       (failure) {
-        if (pageSize == 10) {
+        if (page == 1) {
         emit(FetchNewsFailure(failure.errMessage));
       } else {
         emit(FetchNewsFailurePagination(failure.errMessage));

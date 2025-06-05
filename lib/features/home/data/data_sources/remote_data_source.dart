@@ -5,7 +5,7 @@ import 'package:news_app/features/home/data/models/news_model/news_model.dart';
 import 'package:news_app/features/home/domain/entities/news_entity.dart';
 
 abstract class RemoteDataSource {
-  Future<List<NewsEntity>> fetchNews({String? category, int? pageSize});
+  Future<List<NewsEntity>> fetchNews({String? category, int? page});
 }
 
 class RemoteDataSourceImpl implements RemoteDataSource {
@@ -13,12 +13,12 @@ class RemoteDataSourceImpl implements RemoteDataSource {
   RemoteDataSourceImpl(this.apiServices);
 
   @override
-  Future<List<NewsEntity>> fetchNews({String? category, int? pageSize}) async {
+  Future<List<NewsEntity>> fetchNews({String? category, int? page}) async {
     List<NewsEntity> newsList = [];
 
     var resopnse = await apiServices.get(
       category: category,
-      pageSize: pageSize,
+      page: page,
     );
 
     for (var news in resopnse['articles']) {

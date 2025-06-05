@@ -15,20 +15,20 @@ class NewsRepoImpl implements FetchNewsRepo {
   @override
   Future<Either<Failure, List<NewsEntity>>> fetchNews({
     String? category,
-    int? pageSize,
+    int? page,
   }) async {
     try {
       List<NewsEntity> newsList = [];
-       newsList = localDataSource.fetchNewsLocally(pageSize: pageSize);
+      //  newsList = localDataSource.fetchNewsLocally(pageSize: pageSize);
         
-        if (newsList.isNotEmpty) {
-          log("Fetched news from local data source");
-          return Right(newsList);
+      //   if (newsList.isNotEmpty) {
+      //     log("Fetched news from local data source");
+      //     return Right(newsList);
           
-        }
+      //   }
       newsList = await remoteDataSource.fetchNews(
         category: category,
-        pageSize: pageSize,
+        page: page,
       );
 
       
