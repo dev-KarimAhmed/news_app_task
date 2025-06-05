@@ -8,8 +8,8 @@ class ApiServices {
   ApiServices(this._dio);
 
   Future<Map<String, dynamic>> get({
-    String endpoint = 'technology',
-    int pageSize = 10,
+    String? endpoint = 'technology',
+    int? pageSize = 10,
   }) async {
     var response = await _dio.get(
       _baseUrl,
