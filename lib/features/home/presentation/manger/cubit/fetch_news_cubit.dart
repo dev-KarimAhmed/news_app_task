@@ -31,7 +31,7 @@ class FetchNewsCubit extends Cubit<FetchNewsState> {
           this.newsList = newsList;
           emit(FetchNewsSuccess());
         } else {
-          this.newsList.addAll(newsList);
+          this.newsList += newsList;
           emit(FetchNewsSuccessPagination());
         }
       },
