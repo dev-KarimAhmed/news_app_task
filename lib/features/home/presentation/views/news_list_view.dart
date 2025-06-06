@@ -10,9 +10,10 @@ class NewsListView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => getIt.get<FetchNewsCubit>()..fetchNews(page:1),
+      create: (context) => getIt.get<FetchNewsCubit>()..fetchNews(page: 1),
       child: BlocBuilder<FetchNewsCubit, FetchNewsState>(
         builder: (context, state) {
+          final cubit = context.read<FetchNewsCubit>();
           return Scaffold(
             appBar: AppBar(
               title: const Text(
@@ -25,24 +26,25 @@ class NewsListView extends StatelessWidget {
               centerTitle: true,
               backgroundColor: Colors.teal,
             ),
-            body:
-                state is FetchNewsSuccess ||
-                        state is FetchNewsLoadingPagination ||
-                        state is FetchNewsFailurePagination ||
-                        state is FetchNewsSuccessPagination
-                    ? NewsList(news: context.read<FetchNewsCubit>().newsList)
-                    : state is FetchNewsLoading
-                    ? const Center(
-                      child: CircularProgressIndicator(color: Colors.teal),
-                    )
-                    : state is FetchNewsFailure
+            body: state is FetchNewsLoading
+                ? const Center(child: CircularProgressIndicator(color: Colors.teal))
+                : state is FetchNewsFailure
                     ? Center(
-                      child: Text(
-                        state.errorMessage,
-                        style: const TextStyle(color: Colors.red),
-                      ),
-                    )
-                    : const SizedBox(),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              state.errorMessage,
+                              style: const TextStyle(color: Colors.red),
+                            ),
+                            TextButton(
+                              onPressed: () => cubit.fetchNews(page: 1),
+                              child: const Text('Retry', style: TextStyle(color: Colors.teal)),
+                            ),
+                          ],
+                        ),
+                      )
+                    : NewsList(news: cubit.newsList),
           );
         },
       ),
