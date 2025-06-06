@@ -10,7 +10,7 @@ class NewsListView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => getIt.get<FetchNewsCubit>()..fetchNews(),
+      create: (context) => getIt.get<FetchNewsCubit>()..fetchNews(page:1),
       child: BlocBuilder<FetchNewsCubit, FetchNewsState>(
         builder: (context, state) {
           return Scaffold(

@@ -7,17 +7,20 @@ import 'source.dart';
 
 class NewsModel extends NewsEntity {
   final Source? source;
+  @override
   final String? author;
   @override
   final String? title;
   @override
 
   final String? description;
+  @override
   final String? url;
   @override
   final String? urlToImage;
   @override
   final String? publishedAt;
+  @override
   final String? content;
 
   const NewsModel({
