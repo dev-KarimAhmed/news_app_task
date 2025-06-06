@@ -2,22 +2,28 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'package:news_app/features/home/domain/entities/news_entity.dart';
 
 abstract class NewsLocalDataSource {
-  List<NewsEntity> fetchNewsLocally({int? page = 1});
+  List<NewsEntity> fetchNewsLocally({int page = 1});
 }
 
 class NewsLocalDataSourceImpl implements NewsLocalDataSource {
-  @override
-  List<NewsEntity> fetchNewsLocally({int? page = 1}) {
-    return getDataFromHiveBox("newsBox", page: page!);
-  }
+  static const int pageSize = 10; // Fetch 10 items per page
+  static const String boxName = 'newsBox';
 
-  List<NewsEntity> getDataFromHiveBox(String boxName, {int page = 1}) {
-    var box = Hive.box<NewsEntity>(boxName);
-    int start = page;
-    int end = (page + 1) * 20; // Assuming each page has 20 items
-    if (start >= box.values.length || end > box.values.length) {
+  @override
+  List<NewsEntity> fetchNewsLocally({int page = 1}) {
+    final box = Hive.box<NewsEntity>(boxName);
+    // Use 1-based indexing: page 1 starts at index 1, page 2 at 11, etc.
+    final start = (page - 1) * pageSize + 1;
+    final end = page * pageSize + 1;
+
+    if (start >= box.length) {
       return [];
     }
-    return box.values.toList().sublist(start);
+
+    // Return up to pageSize items or whatever is available
+    return box.values.toList().sublist(
+          start,
+          end > box.length ? box.length : end,
+        );
   }
 }
